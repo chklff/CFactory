@@ -1,0 +1,52 @@
+{
+  "name": "cfactory-ugc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A compact, local-first UGC script and Higgsfield render workspace.",
+  "engines": {
+    "node": ">=20.11",
+    "npm": ">=10"
+  },
+  "bin": {
+    "cfactory-ugc": "dist-server/server/index.js"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "concurrently -k \"vite\" \"tsx watch server/index.ts\"",
+    "build": "tsc -p tsconfig.server.json && vite build",
+    "start": "node dist-server/server/index.js",
+    "prepare": "npm run build",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit && npm test && npm run build"
+  },
+  "files": [
+    "dist/",
+    "dist-server/",
+    "README.md",
+    "INSTALL.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".env.example"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.7.0",
+    "vite": "^7.0.0"
+  }
+}
